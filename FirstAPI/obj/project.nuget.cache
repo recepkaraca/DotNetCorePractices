@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8mrC0C33hqbghxSezMsOdz7H8LUGEjxndxOy3FrttN/VFcg1UByD4BCvkNipB4Tnh1v6CC3Ch8dgYW4ifUyIuw==",
+  "dgSpecHash": "KdVoRab//j9MqUGKBEJpA95Ni1YJUiwEwl+Ircior7pxNaCqiKUwRy3nqhn6QyGMhTtuDWf/czxw6NuMO9uFoA==",
   "success": true,
   "projectFilePath": "D:\\VisualStudioProjects\\FirstAPI\\FirstAPI\\FirstAPI.csproj",
   "expectedPackageFiles": [
@@ -98,8 +98,7 @@
     "C:\\Users\\RecepKaraca\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\RecepKaraca\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\RecepKaraca\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\RecepKaraca\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\RecepKaraca\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+    "C:\\Users\\RecepKaraca\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

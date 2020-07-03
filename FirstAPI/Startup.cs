@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FirstAPI.Data;
 using FirstAPI.Logger;
+using FirstAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,8 @@ namespace FirstAPI
             services.AddCors();
             services.AddSwaggerGen();
             services.AddSingleton<ILoggerManager, LoggerManager>();
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IBookService, BookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

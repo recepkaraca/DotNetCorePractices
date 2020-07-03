@@ -8,6 +8,7 @@ using FirstAPI.Contracts.Requests;
 using FirstAPI.Data;
 using FirstAPI.Logger;
 using FirstAPI.Models;
+using FirstAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,11 +23,13 @@ namespace FirstAPI.Controllers
     {
         private readonly LearningDbContext _context;
         private readonly ILoggerManager _logger;
+        private readonly IBookService _bookService;
 
-        public BooksController(LearningDbContext context, ILoggerManager logger)
+        public BooksController(LearningDbContext context, ILoggerManager logger, IBookService bookService)
         {
             _context = context;
             _logger = logger;
+            _bookService = bookService;
         }
 
         // GET: api/<BooksController>
@@ -35,7 +38,8 @@ namespace FirstAPI.Controllers
         public async Task<ActionResult<IEnumerable>> GetBooks()
         {
             _logger.LogInfo("Here is info message from the controller.");
-            return await _context.Books.ToListAsync();
+            var books = await _bookService.GetBooks();
+            return books;
         }
 
         // GET api/<BooksController>/5
@@ -44,7 +48,7 @@ namespace FirstAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetBooks(int id)
         {
-            var book = await _context.Books.FindAsync(id);
+            var book = await _bookService.GetBookById(id);
 
             if (book == null)
             {
@@ -54,12 +58,12 @@ namespace FirstAPI.Controllers
             return Ok(book);
         }
 
-        [HttpGet("users/{userName}")]
+        [HttpGet("users/{username}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetBooksByUser(string userName)
+        public async Task<ActionResult> GetBooksByUser(string username)
         {
-            var books = await _context.UsersBooks.Include(x => x.Book).Where(x => x.UserName == userName).ToListAsync();
+            var books = await _bookService.GetBooksByUser(username);
 
             if (books == null)
             {
@@ -74,9 +78,7 @@ namespace FirstAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> PostBook([FromBody] Book book)
         {
-            _context.Books.Add(book);
-            await _context.SaveChangesAsync();
-
+            _bookService.PostBook(book);
             return Created("abc", book);
         }
 
@@ -86,15 +88,11 @@ namespace FirstAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> PatchBook(int id, [FromBody] PatchBookRequest request)
         {
-            var book = await _context.Books.FirstOrDefaultAsync(x => x.Id == id);
-            if(book == null)
+            var book = await _bookService.PatchBook(id, request);
+            if (book == null)
             {
                 return NotFound();
             }
-
-            book.Name = request.Name;
-            await _context.SaveChangesAsync();
-
             return Ok(book);
         }
 
@@ -104,15 +102,11 @@ namespace FirstAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> DeleteBook(int id)
         {
-            var book = await _context.Books.FindAsync(id);
-            if(book == null)
+            var book = await _bookService.DeleteBook(id);
+            if (book == null)
             {
                 return NotFound();
             }
-
-            _context.Books.Remove(book);
-            await _context.SaveChangesAsync();
-
             return NoContent();
         }
     }

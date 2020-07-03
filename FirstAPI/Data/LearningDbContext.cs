@@ -22,6 +22,6 @@ namespace FirstAPI.Data
         }
 
         public virtual DbSet<Book> Books { get; set; }
-        public virtual DbSet<UserBook> UsersBooks { get; set; }
+        public virtual DbSet<UserBook> UserBooks { get; set; }
     }
 }
