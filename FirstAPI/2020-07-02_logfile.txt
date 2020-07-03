@@ -1,0 +1,8 @@
+2020-07-02 13:33:24.9517 INFO Here is info message from the controller.
+2020-07-02 18:38:19.3560 INFO Here is info message from the controller.
+2020-07-02 18:38:29.3744 INFO Here is info message from the controller.
+2020-07-02 18:38:30.3831 INFO Here is info message from the controller.
+2020-07-02 18:38:41.2644 INFO Here is info message from the controller.
+2020-07-02 18:38:42.8169 INFO Here is info message from the controller.
+2020-07-02 18:38:43.9615 INFO Here is info message from the controller.
+2020-07-02 18:38:45.4779 INFO Here is info message from the controller.

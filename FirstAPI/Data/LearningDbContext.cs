@@ -16,6 +16,12 @@ namespace FirstAPI.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserBook>().HasKey(t => new { t.UserName, t.BookId });
+        }
+
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<UserBook> UsersBooks { get; set; }
     }
 }
